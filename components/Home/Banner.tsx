@@ -3,7 +3,7 @@ import Image from "next/image";
 const Banner = () => {
   return (
     <section className="mt-12 mb-16 rounded-2xl md:p-14 px-8 pb-8 py-15 bg-card">
-      <div className="flex flex-col gap-5 md:flex-row items-center justify-between">
+      <div className="flex flex-col gap-5 lg:flex-row items-center justify-between">
         <div>
           <p className="text-[12px] text-accent font-bold">WORKOUT LIBRARY</p>
           <h2 className="md:text-6xl text-5xl font-bold tracking-tight py-5">
