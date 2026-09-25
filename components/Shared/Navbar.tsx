@@ -1,13 +1,22 @@
 "use client";
 
+import { MyPlanContext } from "@/Contexts/MyPlanContext";
 import { ChevronRight, MenuIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
+
 const Navbar = () => {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const planContext = useContext(MyPlanContext);
+  if (!planContext) {
+    throw new Error("Error");
+  }
+
+  const { todaysPlan, savedPlans } = planContext;
   return (
     <nav className="border-b sticky top-0 bg-[#0B0D12] z-50 border-b-[#1C1F26]">
       <div className="flex flex-wrap md:flex-nowrap gap-y-3 justify-between items-center md:h-20 w-[92%] md:w-[85%] mx-auto py-3 md:py-0 ">
@@ -42,13 +51,13 @@ const Navbar = () => {
           <button className="cursor-pointer flex items-center gap-3">
             <Link href="/my-plan">Plan</Link>
             <span className="inline-flex items-center justify-center text-[12px] text-black h-6 w-6 rounded-full bg-accent">
-              0
+              {todaysPlan.length}
             </span>
           </button>
           <button className="cursor-pointer flex items-center gap-3">
             <Link href="/my-plan">Saved</Link>
             <span className="inline-flex items-center justify-center shrink-0 text-[12px]  h-6 w-6 rounded-full border border-[#2D313B]">
-              0
+              {savedPlans.length}
             </span>
           </button>
         </div>

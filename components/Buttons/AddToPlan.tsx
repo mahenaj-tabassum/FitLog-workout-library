@@ -2,7 +2,7 @@
 import { MyPlanContext } from "@/Contexts/MyPlanContext";
 import { CardData } from "@/types/CardData";
 import { CalendarDays } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 interface AddToPlanButtonProps {
@@ -24,9 +24,12 @@ const AddToPlan = ({ exercise }: AddToPlanButtonProps) => {
       return;
     }
 
+
     setTodaysPlan([...todaysPlan, exercise]);
     toast.success(`"${exercise.name}" added to today's plan ✅`);
   };
+
+
 
   return (
     <button
