@@ -39,7 +39,7 @@ const CardDetails = ({ exercise }: ExercisesProps) => {
         </div>
 
         {/* Details */}
-        <div className="bg-[#151922] px-5 py-5 rounded-2xl">
+        <div className="bg-card px-5 py-5 rounded-2xl">
           <div className="flex items-center text-[12px] justify-between">
             <p className="uppercase">Equipment</p>
             <p>{exercise.equipment}</p>

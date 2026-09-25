@@ -1,14 +1,17 @@
-import { CalendarDays } from 'lucide-react'
-import React from 'react'
+import { CalendarDays } from "lucide-react";
+import Link from "next/link";
 
 const AddToPlan = () => {
   return (
-    <div>
-        <button className='btn-primary flex items-center gap-1'>
-          <span><CalendarDays size={17} /></span>
-          Add to {"today's"} plan</button>
-    </div>
-  )
-}
+    <Link href="/my-plan">
+      <button className="btn-primary flex items-center gap-1">
+        <span>
+          <CalendarDays size={17} />
+        </span>
+        Add to {"today's"} plan
+      </button>
+    </Link>
+  );
+};
 
-export default AddToPlan
+export default AddToPlan;

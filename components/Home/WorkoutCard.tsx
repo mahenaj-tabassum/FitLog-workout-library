@@ -9,7 +9,7 @@ interface WorkoutCardProps {
 
 const WorkoutCard = ({ card }: WorkoutCardProps) => {
   return (
-    <Link href={`exercise/${card.id}`}>
+    <Link href={`exercise-details/${card.id}`}>
       <div className="bg-[#15171D] cursor-pointer rounded-2xl overflow-hidden">
         {/* Image */}
         <Image

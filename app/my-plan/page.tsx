@@ -1,7 +1,9 @@
+import MyPlan from "@/components/MyPlan/MyPlan";
+
 const MyPlanPage = () => {
   return (
     <div>
-      <h2>MyPlanPage</h2>
+      <MyPlan />
     </div>
   );
 };
