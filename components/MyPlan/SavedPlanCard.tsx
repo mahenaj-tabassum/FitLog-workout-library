@@ -1,6 +1,7 @@
 import { CardData } from "@/types/CardData";
 import {  Clock4, Flame, Star, XIcon } from "lucide-react";
 import Image from "next/image";
+import RemoveSavedCardButton from "../Buttons/RemoveSavedCardBtn";
 
 interface PropsType {
   plan: CardData;
@@ -41,8 +42,9 @@ const SavedPlanCard = ({ plan }: PropsType) => {
 
       <div className="flex items-center gap-4 mr-5">
         <button className="btn-outline rounded-full py-2">View Details</button>
-        <XIcon className="cursor-pointer hover:text-red-500" />
+        <RemoveSavedCardButton plan={plan} />
       </div>
+
     </div>
   );
 };

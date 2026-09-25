@@ -1,7 +1,8 @@
 import { CardData } from "@/types/CardData";
-import { CheckIcon, Clock4, Flame, Star, XIcon } from "lucide-react";
+import { CheckIcon, Clock4, Flame, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import RemoveTodayCardButton from "../Buttons/RemoveTodayCardBtn";
 
 interface PropsType {
   plan: CardData;
@@ -47,7 +48,7 @@ const TodayPlanCard = ({ plan }: PropsType) => {
         <button className="btn-primary py-2 flex items-center gap-2">
           <CheckIcon size={15} /> Mark as Done
         </button>
-        <XIcon className="cursor-pointer hover:text-red-500" />
+        <RemoveTodayCardButton plan={plan} />
       </div>
     </div>
   );
