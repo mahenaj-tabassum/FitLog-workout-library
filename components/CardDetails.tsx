@@ -87,8 +87,8 @@ const CardDetails = ({ exercise }: ExercisesProps) => {
         </ol>
 
         <div className="flex flex-col md:flex-row mt-5 gap-5 items-center">
-          <AddToPlan />
-          <SaveButton />
+          <AddToPlan exercise={exercise} />
+          <SaveButton exercise={exercise} />
         </div>
       </div>
     </div>
