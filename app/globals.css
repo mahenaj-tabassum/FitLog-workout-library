@@ -59,7 +59,7 @@ html {
   .btn-primary {
     background-color: var(--accent);
     color: #000000;
-    font-size: 12px;
+    font-size: 13px;
     font-family: var(--font-inter);
     font-weight: bold;
     padding: 12px 24px;
@@ -69,8 +69,9 @@ html {
   }
 
   .btn-outline {
-    background-color: var(--btn-bg);
+    background: transparent;
     color: #e5e7eb;
+    font-size: 13px;
     border: 1px solid var(--btn-outline);
     padding: 12px 24px;
     border-radius: 0.5rem;

@@ -12,7 +12,7 @@ const LibrarySection = async () => {
   return (
     <section id="workouts">
       {/* Title */}
-      <div className="mb-8">
+      <div className="mb-8 mt-5">
         <h3 className="text-3xl font-bold">The Library</h3>
         <p className="text-[14px]">
           Twelve lifts covering every major muscle group.

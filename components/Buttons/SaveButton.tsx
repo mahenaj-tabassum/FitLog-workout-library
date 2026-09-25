@@ -1,9 +1,12 @@
+import { Bookmark } from "lucide-react";
 import React from "react";
 
 const SaveButton = () => {
   return (
     <div>
-      <button>Save For Later</button>
+      <button className="btn-outline flex items-center gap-1 ">
+        <span><Bookmark size={17} /></span>
+        Save For Later</button>
     </div>
   );
 };
