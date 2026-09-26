@@ -2,7 +2,7 @@
 import { MyPlanContext } from "@/Contexts/MyPlanContext";
 import { CardData } from "@/types/CardData";
 import { CalendarDays } from "lucide-react";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { toast } from "react-toastify";
 
 interface AddToPlanButtonProps {
@@ -36,13 +36,12 @@ const AddToPlan = ({ exercise }: AddToPlanButtonProps) => {
 
   return (
     <button
-      disabled={todaysPlan.length >= 5}
       onClick={handleTodaysPlanButton}
-      className="btn-primary flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
+      className={`btn-primary flex items-center gap-1 ${
+        todaysPlan.length >= 5 ? "opacity-50 cursor-not-allowed" : ""
+      }`}
     >
-      <span>
-        <CalendarDays size={17} />
-      </span>
+      <CalendarDays size={17} />
       Add to {"today's"} plan
     </button>
   );
