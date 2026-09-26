@@ -1,7 +1,7 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
-import { useContext, useState } from "react";
+import { ChevronDown, LoaderCircle } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
 import EmptyState from "./emptyState";
 import { MyPlanContext } from "@/Contexts/MyPlanContext";
 import TodayPlanCard from "./TodayPlanCard";
@@ -10,7 +10,8 @@ import { CardData } from "@/types/CardData";
 
 const MyPlan = () => {
   const [isTabOpen, setIsTabOpen] = useState<"today" | "saved">("today");
-  const [sortedBy, setSortedBy] = useState<"duration" | "rating" | "calory">(
+  const [loading, setLoading] = useState(true);
+  const [sortedBy, setSortedBy] = useState<"duration" | "rating" | "calories">(
     "duration",
   );
 
@@ -27,13 +28,20 @@ const MyPlan = () => {
       return sortExercise.sort((a, b) => a.duration - b.duration);
     } else if (sortedBy === "rating") {
       return sortExercise.sort((a, b) => b.rating - a.rating);
-    } else if (sortedBy === "calory") {
+    } else if (sortedBy === "calories") {
       return sortExercise.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
     }
   };
   const sortTodaysPlans = sortedExercise(todaysPlan);
   const sortSavedPlans = sortedExercise(savedPlans);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="lg:my-10 lg:mx-12 mx-4 my-6">
       <h3 className="text-3xl font-bold tracking-tight text-white">My Plan</h3>
@@ -82,7 +90,7 @@ const MyPlan = () => {
       </div>
 
       {/* Tabs + Sort by */}
-      <div className="flex flex-col md:flex-row md:items-center items-start gap-3 justify-between my-6">
+      <div className="flex flex-col sm:flex-row md:items-center items-start gap-3 justify-between my-6">
         <div className="p-2 border border-[#232732] bg-[#151921] flex items-center gap-5 rounded-xl">
           <button
             onClick={() => setIsTabOpen("today")}
@@ -103,19 +111,21 @@ const MyPlan = () => {
           <div className="relative">
             <select
               onChange={(e) =>
-                setSortedBy(e.target.value as "duration" | "rating" | "calory")
+                setSortedBy(
+                  e.target.value as "duration" | "rating" | "calories",
+                )
               }
               value={sortedBy}
               className="px-4 py-2 pr-8 border border-[#232732] bg-[#151921] rounded-xl text-[14px] text-white cursor-pointer outline-none appearance-none hover:bg-[#1F242D] transition-colors duration-300"
             >
+              <option value="duration" className="bg-[#151921] text-white">
+                Duration
+              </option>
               <option value="rating" className="bg-[#151921] text-white">
                 Rating
               </option>
-              <option value="calory" className="bg-[#151921] text-white">
-                Calory
-              </option>
-              <option value="duration" className="bg-[#151921] text-white">
-                Duration
+              <option value="calories" className="bg-[#151921] text-white">
+                Calories
               </option>
             </select>
             <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-white" />
@@ -124,7 +134,14 @@ const MyPlan = () => {
       </div>
 
       <div className="flex flex-col gap-6">
-        {isTabOpen === "today" ? (
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="flex items-center gap-2 text-[#9CA3AF]">
+              <LoaderCircle className="w-5 h-5 animate-spin text-accent" />
+              <span>Loading...</span>
+            </div>
+          </div>
+        ) : isTabOpen === "today" ? (
           todaysPlan.length > 0 ? (
             sortTodaysPlans?.map((plan) => (
               <TodayPlanCard plan={plan} key={plan.id} />

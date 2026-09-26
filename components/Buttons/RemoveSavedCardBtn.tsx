@@ -26,9 +26,9 @@ const RemoveSavedCardButton = ({ plan }: PropsType) => {
       onClick={() => handleRemove(plan.id)}
       type="button"
       aria-label="Remove exercise"
-      className="p-1.5 rounded-full text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-colors duration-200 cursor-pointer"
+      className="p-2 rounded-full hover:text-red-400 hover:bg-red-500/10 transition-colors duration-200 cursor-pointer flex items-center justify-center bg-red-500/20 text-red-400"
     >
-      <XIcon size={25} />
+      <XIcon size={20} />
     </button>
   );
 };

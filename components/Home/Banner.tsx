@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 
 const Banner = () => {
@@ -15,8 +16,12 @@ const Banner = () => {
             <br className="md:block hidden" />
             {"into today's plan, and watch the week's work add up."}
           </p>
-          <a href="#workouts">
-            <button className="btn-primary mt-5">Browse Workouts</button>
+          <a
+            href="#workouts"
+            className="btn-primary mt-5 inline-flex items-center gap-2"
+          >
+            Browse Workouts
+            <ArrowDown className="h-4 w-4" />
           </a>
         </div>
         <Image
@@ -24,7 +29,7 @@ const Banner = () => {
           src="/banner.png"
           height={334}
           width={334}
-          className="object-cover"
+          className="object-cover w-56 sm:w-64 md:w-72 lg:w-[334px] h-auto"
         />
       </div>
     </section>

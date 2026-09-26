@@ -24,17 +24,21 @@ const AddToPlan = ({ exercise }: AddToPlanButtonProps) => {
       return;
     }
 
+    if (todaysPlan.length >= 5) {
+      toast.warning("Today's plan is full (5 workouts max).");
+      return;
+    }
 
     setTodaysPlan([...todaysPlan, exercise]);
+
     toast.success(`"${exercise.name}" added to today's plan ✅`);
   };
 
-
-
   return (
     <button
+      disabled={todaysPlan.length >= 5}
       onClick={handleTodaysPlanButton}
-      className="btn-primary flex items-center gap-1"
+      className="btn-primary flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <span>
         <CalendarDays size={17} />

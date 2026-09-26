@@ -1,13 +1,19 @@
 "use client";
 
 import { CardData } from "@/types/CardData";
-import { createContext, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 type PlanContextType = {
   todaysPlan: CardData[];
-  setTodaysPlan: React.Dispatch<React.SetStateAction<CardData[]>>;
+  setTodaysPlan: Dispatch<SetStateAction<CardData[]>>;
   savedPlans: CardData[];
-  setSavedPlans: React.Dispatch<React.SetStateAction<CardData[]>>;
+  setSavedPlans: Dispatch<SetStateAction<CardData[]>>;
 };
 
 export const MyPlanContext = createContext<PlanContextType | undefined>(
@@ -15,13 +21,41 @@ export const MyPlanContext = createContext<PlanContextType | undefined>(
 );
 
 const MyPlanContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [todaysPlan, setTodaysPlan] = useState<CardData[]>([]);
-  const [savedPlans, setSavedPlans] = useState<CardData[]>([]);
+  // Load Today's Plan
+  const [todaysPlan, setTodaysPlan] = useState<CardData[]>(() => {
+    if (typeof window === "undefined") return [];
+    const stored = localStorage.getItem("todaysPlan");
+    return stored ? JSON.parse(stored) : [];
+  });
 
-  const states = { todaysPlan, setTodaysPlan, savedPlans, setSavedPlans };
+  // Load Saved Plans
+  const [savedPlans, setSavedPlans] = useState<CardData[]>(() => {
+    if (typeof window === "undefined") return [];
+    const stored = localStorage.getItem("savedPlans");
+    return stored ? JSON.parse(stored) : [];
+  });
+
+  // Save Today's Plan whenever it changes
+  useEffect(() => {
+    localStorage.setItem("todaysPlan", JSON.stringify(todaysPlan));
+  }, [todaysPlan]);
+
+  // Save Saved Plans whenever they change
+  useEffect(() => {
+    localStorage.setItem("savedPlans", JSON.stringify(savedPlans));
+  }, [savedPlans]);
 
   return (
-    <MyPlanContext.Provider value={states}>{children}</MyPlanContext.Provider>
+    <MyPlanContext.Provider
+      value={{
+        todaysPlan,
+        setTodaysPlan,
+        savedPlans,
+        setSavedPlans,
+      }}
+    >
+      {children}
+    </MyPlanContext.Provider>
   );
 };
 

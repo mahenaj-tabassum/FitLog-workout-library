@@ -6,7 +6,6 @@
   --accent: #ccff00; /* button + highlight */
   --heading: #ffffff;
   --text: #9ca3af; /* paragraph */
-  --instruction: #d1d5db;
   --number: #9ca3af;
   --btn-bg: #1a2312;
   --btn-outline: #374151;
@@ -18,7 +17,6 @@
   --color-accent: var(--accent);
   --color-heading: var(--heading);
   --color-body: var(--text);
-  --color-instruction: var(--instruction);
   --color-number: var(--number);
   --color-btn: var(--btn-bg);
   --color-btn-outline: var(--btn-outline);

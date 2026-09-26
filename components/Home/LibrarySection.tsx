@@ -1,25 +1,16 @@
 import type { CardData } from "@/types/CardData";
 import WorkoutCard from "./WorkoutCard";
 
-const CardData = async () => {
+const getCardData = async () => {
   const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
   const data: CardData[] = await response.json();
   return data;
 };
 
 const LibrarySection = async () => {
-  const cardInfos: CardData[] = await CardData();
+  const cardInfos: CardData[] = await getCardData();
   return (
-    <section id="workouts">
-      {/* Title */}
-      <div className="mb-8 mt-5">
-        <h3 className="text-3xl font-bold">The Library</h3>
-        <p className="text-[14px]">
-          Twelve lifts covering every major muscle group.
-        </p>
-      </div>
-
-      {/* Cards */}
+    <section id="library">
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mb-16">
         {cardInfos.map((card) => (
           <WorkoutCard key={card.id} card={card} />

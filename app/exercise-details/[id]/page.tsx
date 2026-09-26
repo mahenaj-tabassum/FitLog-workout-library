@@ -1,5 +1,6 @@
 import CardDetails from "@/components/CardDetails";
 import type { CardData } from "@/types/CardData";
+import { notFound } from "next/navigation";
 
 const CardData = async () => {
   const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -16,7 +17,7 @@ const ExerciseDetailsPage = async ({
   const cardInfos: CardData[] = await CardData();
   const exercise = cardInfos.find((item) => Number(id) === item.id);
 
-  if (!exercise) return null;
+  if (!exercise) return notFound();
 
   return (
     <div>
